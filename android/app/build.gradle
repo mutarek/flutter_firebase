@@ -42,6 +42,7 @@ android {
         applicationId "com.bd.dhakacity.singuplogin"
         minSdkVersion 19
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -68,5 +69,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
