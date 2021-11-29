@@ -2,25 +2,30 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:singuplogin/auth/usersauth.dart';
+import 'package:singuplogin/common/customtoast.dart';
 
 class SignUp extends StatefulWidget {
   _State createState() => _State();
 }
 
 class _State extends State<SignUp> {
+  bool isLoading = false;
   Future future(String semail, String spass) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: "barry.allen@example.com", password: "SuperSecretPassword!");
+      this.isLoading =true;
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: semail, password: spass);
+      toast("Success Account Created");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        Fluttertoast.showToast(msg: "This is Center Short Toast", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER, timeInSecForIosWeb: 1, backgroundColor: Colors.red, textColor: Colors.white, fontSize: 16.0);
-        print('The password provided is too weak.');
+        this.isLoading =false;
+        toast("The password provided is too weak");
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        this.isLoading =false;
+        toast("The account already exists for that email");
       }
     } catch (e) {
-      print(e);
+      this.isLoading =false;
+      toast(e.toString());
     }
   }
 
