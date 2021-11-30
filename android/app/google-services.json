@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "258057511491",
+    "project_id": "fluttterauth",
+    "storage_bucket": "fluttterauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258057511491:android:d58e66be4f60ae6e93aaf6",
+        "android_client_info": {
+          "package_name": "com.bd.dhakacity.singuplogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258057511491-cc3gipqoshpoieplb1jvcgmki1mpr7k2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsdXmZBaH5uZ9tWw44Nr3FUKX2-QSIhog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258057511491-cc3gipqoshpoieplb1jvcgmki1mpr7k2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
