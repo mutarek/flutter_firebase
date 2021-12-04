@@ -19,20 +19,22 @@ class MyApp extends StatefulWidget{
   _State createState()=> _State();
 }
 class _State extends State<MyApp>{
-  @override
+
+
+  /*@override
   void initState() {
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) {
-      if (user == null) {
-        Common().toast('Welcome to Bangladesh Travel');
+      if (user != null) {
+        Common().toast('Please Create a Account First');
       } else {
         Navigator.push(context, CupertinoPageRoute(builder: (context)=> HomePage()));
         Common().toast('User is signed in!');
       }
     });
     super.initState();
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

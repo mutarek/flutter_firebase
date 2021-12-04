@@ -28,6 +28,7 @@ dependencies:
   firebase_analytics: ^8.3.4
   fluttertoast: ^8.0.8
   cloud_firestore: ^3.1.0
+  flutter_progress_hud: ^2.0.0
 
 dev_dependencies:
   flutter_test:
