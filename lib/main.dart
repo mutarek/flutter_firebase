@@ -40,7 +40,7 @@ class _State extends State<MyApp> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: PhoneSignUp(),
+      body: Initializer(),
     );
   }
 }
