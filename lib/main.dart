@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:singuplogin/ui/home.dart';
+import 'package:singuplogin/ui/phonesignup.dart';
 import 'package:singuplogin/ui/signup.dart';
 
 import 'common/customtoast.dart';
@@ -39,7 +40,7 @@ class _State extends State<MyApp>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: SignUp(),
+      body: PhoneSignUp(),
     );
   }
 }
