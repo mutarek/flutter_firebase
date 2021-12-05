@@ -23,51 +23,63 @@ class _State extends State<PhoneSignUp> {
       _selectedCountry = country;
     });
   }
-
+  TextEditingController number = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final country = _selectedCountry;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            country == null
-                ? Container()
-                : Column(
-                    children: <Widget>[
-                      Image.asset(
-                        country.flag,
-                        package: countryCodePackageName,
-                        width: 100,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        '${country.callingCode} ${country.name} (${country.countryCode})',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Container(
+            height: 50,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: (){
+                      _onPressed();
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(2),
+                        child: Text('${country!.callingCode}',style: TextStyle(fontSize: 20),)),
                   ),
-            SizedBox(
-              height: 100,
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding: EdgeInsets.all(2),
+                      child: TextField(
+                        controller: number,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)
+                            )
+                        ),
+                      )
+                  )
+
+                ),
+              ],
             ),
-            MaterialButton(
-              child: Text('Select Country using full screen'),
-              color: Colors.amber,
-              onPressed: _onPressed,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: ElevatedButton(
+              onPressed: (){
+               createUser(country.callingCode,number.text);
+              },
+              child: Text('Send OTP'),
             ),
-            SizedBox(
-              height: 24,
-            ),
-            SizedBox(
-              height: 24,
-            ),
-          ],
-        ),
-      ),
+          )
+        ],
+      )
     );
   }
 
@@ -82,6 +94,8 @@ class _State extends State<PhoneSignUp> {
       });
     }
   }
+
+  void createUser(String callingCode, String text) {}
 
 }
 
@@ -100,3 +114,4 @@ class PickerPage extends StatelessWidget {
     );
   }
 }
+
