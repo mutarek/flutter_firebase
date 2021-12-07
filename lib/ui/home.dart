@@ -30,9 +30,13 @@ class HomeState extends State<HomePage>{
           }
           return ListView(
             children: snapshot.data!.docs.map((document) {
-              return ListTile(
-                title: Text(document['title']),
-                subtitle: Text(document['description']),
+              return Card(
+                elevation: 5,
+                color: Colors.amber,
+                child: ListTile(
+                  title: Text(document['title']),
+                  subtitle: Text(document['description']),
+                ),
               );
               return Container(
                 child: Center(child: Text(document['title'])),
