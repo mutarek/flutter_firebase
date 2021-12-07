@@ -28,12 +28,14 @@ class HomeState extends State<HomePage>{
               child: CircularProgressIndicator(),
             );
           }
-
           return ListView(
             children: snapshot.data!.docs.map((document) {
               return ListTile(
-                title: document['title'],
-                subtitle: document['description'],
+                title: Text(document['title']),
+                subtitle: Text(document['description']),
+              );
+              return Container(
+                child: Center(child: Text(document['title'])),
               );
             }).toList(),
           );
