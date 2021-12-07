@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:singuplogin/ui/googlesign.dart';
 import 'package:singuplogin/ui/home.dart';
 import 'package:singuplogin/ui/phonesignup.dart';
 
@@ -37,7 +38,7 @@ class _State extends State<MyApp> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: Initializer(),
+      body: GoogleSign(),
     );
   }
 }
