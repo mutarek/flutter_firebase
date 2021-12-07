@@ -4,9 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:singuplogin/ui/home.dart';
 import 'package:singuplogin/ui/phonesignup.dart';
-import 'package:singuplogin/ui/signup.dart';
-
-import 'common/customtoast.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,6 +66,6 @@ class _InitializerState extends State<Initializer> {
       body: Center(
         child: CircularProgressIndicator(),
       ),
-    ):_user ==null ?PhoneSignUp():HomePage();
+    ):_user.isAnonymous ?PhoneSignUp():HomePage();
   }
 }

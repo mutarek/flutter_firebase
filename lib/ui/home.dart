@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:singuplogin/common/customtoast.dart';
 
 class HomePage extends StatefulWidget {
   HomeState createState() => HomeState();
 }
 class HomeState extends State<HomePage>{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,41 +17,48 @@ class HomeState extends State<HomePage>{
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
-          addUser();
+          addPost();
         },
       ),
-      body:  FutureBuilder<DocumentSnapshot>(
-        future: users.doc("XW2ln61TmNcmjrJNtvt7").get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-
-          if (snapshot.hasError) {
-            return Text("Something went wrong");
+      body:StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
 
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return Text("Document does not exist");
-          }
-
-          if (snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-            return Text("Full Name: ${data['full_name']} ${data['last_name']}");
-          }
-
-          return Text("loading");
+          return ListView(
+            children: snapshot.data!.docs.map((document) {
+              return ListTile(
+                title: document['title'],
+                subtitle: document['description'],
+              );
+            }).toList(),
+          );
         },
       ),
     );
   }
 }
-Future<void> addUser() {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-  return users
-      .add({
-    'full_name': "Mohiuddin Tarek", // John Doe
-    'company': "Bangladesh Travel", // Stokes and Sons
-    'age': 21 // 42
-  })
-      .then((value) => print("User Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+Future addPost() async{
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection("Posts");
+  Map<String, dynamic> data = <String, dynamic>{
+    "title": "How to Dhaka",
+    "description": "How to go Dhaka Desc",
+  };
+  collectionReference.doc().set(data).whenComplete(() => print('Post Added')).catchError((onError)=> print("Failed to add user: $onError"));
 }
+/*Future<void> addUser()async {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  String currentUser = firebaseAuth.currentUser!.uid;
+  String phoneNumber =firebaseAuth.currentUser!.phoneNumber.toString();
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection("Users");
+  Map<String, dynamic> data = <String, dynamic>{
+    "title": phoneNumber,
+    "description": "description",
+  };
+  collectionReference.doc(currentUser).set(data).whenComplete(() => print('Added')).
+  catchError((onError)=> print("Failed to add user: $onError"));
+}*/
