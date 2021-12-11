@@ -30,8 +30,7 @@ dependencies:
   cloud_firestore: ^3.1.0
   flutter_progress_hud: ^2.0.0
   country_calling_code_picker: ^2.0.0
-  google_sign_in: "^4.5.1"
-  flutter_facebook_auth: "^3.5.0"
+  google_sign_in: ^4.5.1
 
 dev_dependencies:
   flutter_test:

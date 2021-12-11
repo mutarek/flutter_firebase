@@ -20,25 +20,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  /*@override
-  void initState() {
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user != null) {
-        Common().toast('Please Create a Account First');
-      } else {
-        Navigator.push(context, CupertinoPageRoute(builder: (context)=> HomePage()));
-        Common().toast('User is signed in!');
-      }
-    });
-    super.initState();
-  }*/
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: GoogleSign(),
+      body: Initializer(),
     );
   }
 }
@@ -67,6 +53,6 @@ class _InitializerState extends State<Initializer> {
       body: Center(
         child: CircularProgressIndicator(),
       ),
-    ):_user.isAnonymous ?PhoneSignUp():HomePage();
+    ):_user.isAnonymous ? GoogleSign():HomePage();
   }
 }
